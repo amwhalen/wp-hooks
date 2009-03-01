@@ -3,7 +3,7 @@
 Plugin Name: WP Hooks
 Plugin URI: http://amwhalen.com/blog/projects/wp-hooks/
 Description: Add JavaScript, HTML, or other code to your header and footer without modifying your theme.
-Version: 1.0
+Version: 1.0.1
 Author: Andrew M. Whalen
 Author URI: http://amwhalen.com
 */
@@ -25,7 +25,7 @@ Author URI: http://amwhalen.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('amw_hooks_version', '1.0');
+define('amw_hooks_version', '1.0.1');
 
 /**
  * Echoes whatever the user wants in the header.
@@ -113,7 +113,7 @@ function amw_hooks_filter_plugin_actions($links, $file){
 	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
 
 	if( $file == $this_plugin ){
-		$settings_link = '<a href="options-general.php?page=wp-hooks">' . __('Settings') . '</a>';
+		$settings_link = '<a href="options-general.php?page=wp-hooks/wp-hooks.php">' . __('Settings') . '</a>';
 		$links = array_merge( array($settings_link), $links); // before other links
 	}
 	return $links;
