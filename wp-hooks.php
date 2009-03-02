@@ -99,7 +99,8 @@ function amw_hooks_options_page() {
  */
 function amw_hooks_admin() {
 
-	add_submenu_page('options-general.php', 'WP Hooks', 'WP Hooks', 'edit_files', __FILE__, 'amw_hooks_options_page');
+	//add_submenu_page('options-general.php', 'WP Hooks', 'WP Hooks', 'edit_files', __FILE__, 'amw_hooks_options_page');
+	add_options_page('WP Hooks', 'WP Hooks', 'edit_files', __FILE__, 'amw_hooks_options_page');
 
 }
 
