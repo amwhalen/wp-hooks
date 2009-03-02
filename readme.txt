@@ -3,7 +3,7 @@ Contributors: anukit
 Tags: hooks, wp_head, wp_footer, head, footer
 Requires at least: 2.1
 Tested up to: 2.7.1
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 WP Hooks is a plugin for WordPress that allows you to add JavaScript, HTML, or other code to your
 header and footer without modifying your theme.
