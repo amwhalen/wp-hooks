@@ -57,11 +57,13 @@ function amw_hooks_options_page() {
 	
 	<form method="post" action="options.php">
 		
-		<?php wp_nonce_field('update-options'); ?>
+		<?php //wp_nonce_field('update-options'); ?>
 		
-		<input type="hidden" name="action" value="update" />
+		<?php settings_fields('some-options'); ?>
 		
-		<input type="hidden" name="page_options" value="<?php echo $plugin_options; ?>" />
+		<!--<input type="hidden" name="action" value="update" />
+		
+		<input type="hidden" name="page_options" value="<?php echo $plugin_options; ?>" />-->
 		
 		<table class="form-table amw_hooks_options">
 			
@@ -91,6 +93,19 @@ function amw_hooks_options_page() {
 
 	</div>
 	<?php
+
+}
+
+/**
+ * Admin init
+ */
+function amw_hooks_init() {
+
+	// register all options
+	$opts = amw_hooks_get_default_options();
+	foreach ($opts as $k=>$v) {
+		register_setting('amw-hooks-options', $k);
+	}
 
 }
 
@@ -168,6 +183,7 @@ register_activation_hook(__FILE__,'amw_hooks_install');
 register_deactivation_hook(__FILE__, 'amw_hooks_uninstall');
 
 // admin stuff
+add_action('admin_init', 'amw_hooks_init');
 add_action('admin_menu', 'amw_hooks_admin');
 add_filter('plugin_action_links', 'amw_hooks_filter_plugin_actions', 10, 2);
 
