@@ -57,13 +57,25 @@ function amw_hooks_options_page() {
 	
 	<form method="post" action="options.php">
 		
-		<?php //wp_nonce_field('update-options'); ?>
+		<?php
 		
-		<?php settings_fields('amw-hooks-options'); ?>
+		// WP and WPMU 2.7+ use settings_fields(), 2.1+ use wp_nonce_field()
+		if (function_exists('settings_fields')) {
 		
-		<!--<input type="hidden" name="action" value="update" />
+			settings_fields('amw-hooks-options');
 		
-		<input type="hidden" name="page_options" value="<?php echo $plugin_options; ?>" />-->
+		} else {
+		
+			wp_nonce_field('update-options');
+			
+			?>
+			<input type="hidden" name="action" value="update" />
+			<input type="hidden" name="page_options" value="<?php echo $plugin_options; ?>" />
+			<?php
+		
+		}
+		
+		?>
 		
 		<table class="form-table amw_hooks_options">
 			
