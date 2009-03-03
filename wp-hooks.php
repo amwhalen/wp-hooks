@@ -59,7 +59,7 @@ function amw_hooks_options_page() {
 		
 		<?php //wp_nonce_field('update-options'); ?>
 		
-		<?php settings_fields('some-options'); ?>
+		<?php settings_fields('amw-hooks-options'); ?>
 		
 		<!--<input type="hidden" name="action" value="update" />
 		
