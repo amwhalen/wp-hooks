@@ -3,12 +3,12 @@
 Plugin Name: WP Hooks
 Plugin URI: http://amwhalen.com/blog/projects/wp-hooks/
 Description: Add JavaScript, HTML, or other code to your header and footer without modifying your theme.
-Version: 1.0.3
+Version: 1.0.4
 Author: Andrew M. Whalen
 Author URI: http://amwhalen.com
 */
 
-/*  Copyright 2009  Andrew M. Whalen  (email : wp-hooks@amwhalen.com)
+/*  Copyright 2016  Andrew M. Whalen  (email : wp-hooks@amwhalen.com)
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ Author URI: http://amwhalen.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('AMW_HOOKS_VERSION', '1.0.3');
+define('AMW_HOOKS_VERSION', '1.0.4');
 
 /**
  * Echoes whatever the user wants in the header.
@@ -47,60 +47,60 @@ function amw_hooks_options_page() {
 
 	?>
 	<div class="wrap">
-	
+
 	<h2>WP Hooks Options</h2>
-	
+
 	<p>
 		WP Hooks places the code you write below into the header or footer of your site so you don't have to modify your theme.
 		It saves you from having to remember to add that custom CSS, JavaScript, meta tag, etc. when you switch to a new theme.
 	</p>
-	
+
 	<form method="post" action="options.php">
-		
+
 		<?php
-		
+
 		// WP and WPMU 2.7+ use settings_fields(), 2.1+ use wp_nonce_field()
 		if (function_exists('settings_fields')) {
-		
+
 			settings_fields('amw-hooks-options');
-		
+
 		} else {
-		
+
 			wp_nonce_field('update-options');
-			
+
 			?>
 			<input type="hidden" name="action" value="update" />
 			<input type="hidden" name="page_options" value="<?php echo $plugin_options; ?>" />
 			<?php
-		
+
 		}
-		
+
 		?>
-		
+
 		<table class="form-table amw_hooks_options">
-			
+
 			<tr valign="top">
 				<td>
 					<h3>Header Content</h3>
 					<textarea rows="10" cols="85" name="amw_hooks_head"><?php echo htmlentities(get_option('amw_hooks_head')); ?></textarea>
 				</td>
 			</tr>
-			
+
 			<tr valign="top">
 				<td>
 					<h3>Footer Content</h3>
 					<textarea rows="10" cols="85" name="amw_hooks_footer"><?php echo htmlentities(get_option('amw_hooks_footer')); ?></textarea>
 				</td>
 			</tr>
-						
+
 		</table>
-				
+
 		<p class="submit">
 			<input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
 		</p>
 
 	</form>
-	
+
 	<p><a href="http://amwhalen.com/blog/projects/wp-hooks/">WP Hooks</a> is by <a href="http://amwhalen.com">Andrew M. Whalen</a>.</p>
 
 	</div>
@@ -134,7 +134,7 @@ function amw_hooks_admin() {
  * Adds settings link in the plugin listing.
  */
 function amw_hooks_filter_plugin_actions($links, $file){
-	
+
 	static $this_plugin;
 
 	if( !$this_plugin ) $this_plugin = plugin_basename(__FILE__);
@@ -144,14 +144,14 @@ function amw_hooks_filter_plugin_actions($links, $file){
 		$links = array_merge( array($settings_link), $links); // before other links
 	}
 	return $links;
-	
+
 }
 
 /**
  * Install this plugin
  */
 function amw_hooks_install() {
-	
+
 	// add any new options, leaving old values untouched
 	$opts = amw_hooks_get_default_options();
 	foreach($opts as $k=>$v) {
@@ -185,7 +185,7 @@ function amw_hooks_get_default_options() {
 		'amw_hooks_head' => '',
 		'amw_hooks_footer' => ''
 	);
-	
+
 	return $opts;
 
 }
