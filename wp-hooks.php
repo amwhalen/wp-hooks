@@ -25,7 +25,7 @@ Author URI: http://amwhalen.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('amw_hooks_version', '1.0.3');
+define('AMW_HOOKS_VERSION', '1.0.3');
 
 /**
  * Echoes whatever the user wants in the header.
@@ -181,7 +181,7 @@ function amw_hooks_uninstall() {
 function amw_hooks_get_default_options() {
 
 	$opts = array(
-		'amw_hooks_version' => $amw_hooks_version,
+		'amw_hooks_version' => AMW_HOOKS_VERSION,
 		'amw_hooks_head' => '',
 		'amw_hooks_footer' => ''
 	);
