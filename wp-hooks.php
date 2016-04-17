@@ -2,8 +2,8 @@
 /*
 Plugin Name: WP Hooks
 Plugin URI: http://amwhalen.com/blog/projects/wp-hooks/
-Description: Add JavaScript, HTML, or other code to your header and footer without modifying your theme.
-Version: 1.0.4
+Description: Add JavaScript, CSS, meta tags, etc. to your header and footer.
+Version: 1.0.6
 Author: Andrew M. Whalen
 Author URI: http://amwhalen.com
 */
@@ -25,7 +25,7 @@ Author URI: http://amwhalen.com
     Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-define('AMW_HOOKS_VERSION', '1.0.4');
+define('AMW_HOOKS_VERSION', '1.0.6');
 
 /**
  * Echoes whatever the user wants in the header.
@@ -48,11 +48,10 @@ function amw_hooks_options_page() {
 	?>
 	<div class="wrap">
 
-	<h2>WP Hooks Options</h2>
+	<h2>Header and Footer Settings (WP Hooks)</h2>
 
 	<p>
-		WP Hooks places the code you write below into the header or footer of your site so you don't have to modify your theme.
-		It saves you from having to remember to add that custom CSS, JavaScript, meta tag, etc. when you switch to a new theme.
+		Add JavaScript, CSS, meta tags, etc. to your header and footer.
 	</p>
 
 	<form method="post" action="options.php">
@@ -95,8 +94,8 @@ function amw_hooks_options_page() {
 
 		</table>
 
-		<p class="submit">
-			<input type="submit" name="Submit" value="<?php _e('Save Changes') ?>" />
+    	<p class="submit">
+			<button class="button-primary"><?php _e('Save Changes','wphooks'); ?></button>
 		</p>
 
 	</form>
@@ -126,7 +125,7 @@ function amw_hooks_init() {
  */
 function amw_hooks_admin() {
 
-	add_options_page('WP Hooks', 'WP Hooks', 'edit_files', __FILE__, 'amw_hooks_options_page');
+	add_options_page('Header and Footer (WP Hooks)', 'Header and Footer (WP Hooks)', 'edit_files', __FILE__, 'amw_hooks_options_page');
 
 }
 
@@ -191,8 +190,8 @@ function amw_hooks_get_default_options() {
 }
 
 // install / uninstall
-register_activation_hook(__FILE__,'amw_hooks_install');
-register_deactivation_hook(__FILE__, 'amw_hooks_uninstall');
+register_activation_hook(__FILE__, 'amw_hooks_install');
+register_uninstall_hook(__FILE__, 'amw_hooks_uninstall');
 
 // admin stuff
 add_action('admin_init', 'amw_hooks_init');
@@ -202,5 +201,3 @@ add_filter('plugin_action_links', 'amw_hooks_filter_plugin_actions', 10, 2);
 // do the work of this plugin!
 add_action('wp_head', 'amw_hooks_head');
 add_action('wp_footer', 'amw_hooks_footer');
-
-?>
